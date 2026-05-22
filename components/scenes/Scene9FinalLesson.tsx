@@ -191,14 +191,6 @@ export function Scene9FinalLesson({ isActive, onRestart }: Scene9FinalLessonProp
               >
                 ↺ Xem Lại Từ Đầu
               </button>
-              <button
-                className="btn-outline"
-                style={{ borderColor: "rgba(184,136,42,0.5)", color: "rgba(184,136,42,0.8)" }}
-                onClick={() => window.print?.()}
-                aria-label="In bài"
-              >
-                ↗ Chia Sẻ
-              </button>
             </motion.div>
           </div>
 

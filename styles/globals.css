@@ -764,3 +764,59 @@ button:focus-visible, a:focus-visible {
   }
 }
 
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  /* Force all elements to be visible (overrides Framer Motion inline styles) */
+  *, *::before, *::after {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Expand all scenes so they don't get clipped by height: 100vh or overflow: hidden */
+  .scene {
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    page-break-inside: auto;
+    page-break-after: always;
+    padding: 40px 0 !important;
+    background: none !important;
+    border: none !important;
+  }
+
+  /* Make sure the canvas wraps don't hide overflow */
+  .canvas-wrapper, .canvas-track {
+    overflow: visible !important;
+    height: auto !important;
+    padding-top: 0 !important;
+  }
+
+  /* Avoid cutting cards in half */
+  .scene-card, .scene-card-dark, .candidate-panel {
+    page-break-inside: avoid;
+    border: 1px solid #ccc !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide UI elements unnecessary for printing */
+  .title-bar, .progress-line, .parchment-texture, .paper-vignette, .board-bg-line, .annotation, .btn-brass, .btn-outline {
+    display: none !important;
+  }
+
+  /* Ensure text is readable on white paper */
+  .t-heading, .t-heading-light, .t-body, .t-body-dark, .t-quote, .t-accent, .t-scene-label {
+    color: black !important;
+    text-shadow: none !important;
+  }
+}
+
