@@ -240,17 +240,13 @@ export function Scene3StudentB({ isActive }: Scene3StudentBProps) {
         animate={isActive ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 1.3 }}
         className="annotation"
-        style={{ position: "absolute", bottom: 100, right: 100, zIndex: 5, transform: "rotate(1deg)" }}
+        style={{ position: "absolute", bottom: 40, right: 100, zIndex: 5, transform: "rotate(1deg)" }}
         aria-hidden="true"
       >
         thực lực &gt; bằng cấp!
       </motion.span>
 
-      {/* Connecting arrow */}
-      <div aria-hidden="true" style={{ position: "absolute", right: 32, top: "50%", transform: "translateY(-50%)", display: "flex", alignItems: "center", zIndex: 5, opacity: 0.4 }}>
-        <div style={{ width: 28, height: 1, background: "var(--brass)" }} />
-        <div style={{ width: 7, height: 7, borderRight: "1.5px solid var(--brass)", borderTop: "1.5px solid var(--brass)", transform: "rotate(45deg)", marginLeft: -2 }} />
-      </div>
+
     </section>
   );
 }

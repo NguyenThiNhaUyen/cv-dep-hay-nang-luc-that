@@ -1,5 +1,5 @@
 /* ============================================================
-   BEHIND THE CV — Horizontal Canvas Design System
+   BEHIND THE CV — Vertical Scrollytelling Design System
    Fonts: Cormorant Garamond · Lora · Playfair Display · Inter
    ============================================================ */
 
@@ -54,7 +54,11 @@
   padding: 0;
 }
 
-html, body {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   width: 100%;
   min-height: 100%;
   background: var(--parchment);
@@ -395,82 +399,20 @@ button:focus-visible, a:focus-visible {
 /* ============================================================
    NAVIGATION — Scene Dots
    ============================================================ */
+/* Canvas nav dots — hidden in vertical scroll mode */
 .canvas-nav {
-  position: fixed;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(245, 237, 220, 0.85);
-  border: 1px solid var(--border-warm);
-  border-radius: 40px;
-  padding: 10px 20px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 24px var(--shadow-warm);
+  display: none;
 }
 
 .nav-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--border-warm);
-  border: none;
-  cursor: pointer;
-  transition: all var(--t-base);
-  padding: 0;
-}
-
-.nav-dot.active {
-  width: 22px;
-  border-radius: 4px;
-  background: var(--brass);
-}
-
-.nav-dot:hover:not(.active) {
-  background: var(--ink-faded);
-  transform: scale(1.2);
+  display: none;
 }
 
 /* Arrow navigation buttons */
+/* Nav arrows — hidden in vertical scroll mode */
 .nav-arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 500;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(245, 237, 220, 0.88);
-  border: 1px solid var(--border-warm);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink-light);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 16px var(--shadow-warm);
-  transition: all var(--t-base);
+  display: none;
 }
-
-.nav-arrow:hover {
-  background: var(--parchment);
-  border-color: var(--border-brass);
-  color: var(--brass);
-  box-shadow: 0 6px 20px rgba(184, 136, 42, 0.2);
-  transform: translateY(-50%) scale(1.05);
-}
-
-.nav-arrow:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  transform: translateY(-50%);
-}
-
-.nav-arrow-left  { left: 24px; }
-.nav-arrow-right { right: 24px; }
 
 /* Scene counter label */
 .scene-counter {
@@ -784,34 +726,41 @@ button:focus-visible, a:focus-visible {
 }
 
 /* ============================================================
-   SCROLLBAR — Hidden (canvas handles nav)
+   SCROLLBAR — Custom styled for luxury feel
    ============================================================ */
-::-webkit-scrollbar { display: none; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--parchment-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 136, 42, 0.35);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(184, 136, 42, 0.55);
+}
 
 /* ============================================================
-   RESPONSIVE SCALING (Fix for 14" / 15.6" screens without scroll)
+   VERTICAL SCENE DIVIDERS
    ============================================================ */
-@media (max-height: 950px) {
-  .scene-inner, .scene-inner-center {
-    transform: scale(0.9);
-  }
+.scene + .scene {
+  border-top: 1px solid rgba(184, 136, 42, 0.08);
 }
 
-@media (max-height: 850px) {
+/* ============================================================
+   RESPONSIVE (vertical scroll)
+   ============================================================ */
+@media (max-width: 768px) {
   .scene-inner, .scene-inner-center {
-    transform: scale(0.82);
+    padding: 0 20px;
   }
-}
-
-@media (max-height: 750px) {
-  .scene-inner, .scene-inner-center {
-    transform: scale(0.72);
-  }
-}
-
-@media (max-height: 650px) {
-  .scene-inner, .scene-inner-center {
-    transform: scale(0.62);
+  .title-bar {
+    padding: 0 16px;
   }
 }
 

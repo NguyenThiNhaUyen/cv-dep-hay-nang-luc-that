@@ -162,12 +162,6 @@ export function Scene4Conflict({ isActive }: Scene4ConflictProps) {
           </motion.span>
         </div>
       </div>
-
-      {/* Connecting arrow */}
-      <div aria-hidden="true" style={{ position: "absolute", right: 32, top: "50%", transform: "translateY(-50%)", display: "flex", alignItems: "center", zIndex: 5, opacity: 0.4 }}>
-        <div style={{ width: 28, height: 1, background: "var(--brass)" }} />
-        <div style={{ width: 7, height: 7, borderRight: "1.5px solid var(--brass)", borderTop: "1.5px solid var(--brass)", transform: "rotate(45deg)", marginLeft: -2 }} />
-      </div>
     </section>
   );
 }

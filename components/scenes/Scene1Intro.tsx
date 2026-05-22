@@ -91,7 +91,7 @@ export function Scene1Intro({ isActive, onNext }: Scene1IntroProps) {
       ))}
 
       {/* Center content */}
-      <div className="scene-inner-center" style={{ zIndex: 10, marginTop: "-8vh" }}>
+      <div className="scene-inner-center" style={{ zIndex: 10, marginTop: "0" }}>
         {/* Overline label */}
         <motion.div
           variants={FI}
@@ -202,18 +202,7 @@ export function Scene1Intro({ isActive, onNext }: Scene1IntroProps) {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </button>
-          <span
-            className="animate-breathe"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: 10,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "var(--ink-ghost)",
-            }}
-          >
-            ← → phím mũi tên để điều hướng
-          </span>
+
         </motion.div>
 
 
@@ -243,36 +232,13 @@ export function Scene1Intro({ isActive, onNext }: Scene1IntroProps) {
         animate={isActive ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
         className="annotation"
-        style={{ position: "absolute", bottom: 120, right: 80, zIndex: 5 }}
+        style={{ position: "absolute", bottom: 40, right: 60, zIndex: 5 }}
         aria-hidden="true"
       >
         khám phá →
       </motion.span>
 
-      {/* Scene connector arrow */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          right: 32,
-          top: "50%",
-          transform: "translateY(-50%)",
-          display: "flex",
-          alignItems: "center",
-          gap: 0,
-          zIndex: 5,
-          opacity: 0.4,
-        }}
-      >
-        <div style={{ width: 28, height: 1, background: "var(--brass)" }} />
-        <div style={{
-          width: 7, height: 7,
-          borderRight: "1.5px solid var(--brass)",
-          borderTop: "1.5px solid var(--brass)",
-          transform: "rotate(45deg)",
-          marginLeft: -2,
-        }} />
-      </div>
+
     </section>
   );
 }

@@ -227,12 +227,6 @@ export function Scene2StudentA({ isActive }: Scene2StudentAProps) {
       >
         Hình thức ≠ Bản chất
       </motion.span>
-
-      {/* Connecting arrows */}
-      <div aria-hidden="true" style={{ position: "absolute", right: 32, top: "50%", transform: "translateY(-50%)", display: "flex", alignItems: "center", zIndex: 5, opacity: 0.4 }}>
-        <div style={{ width: 28, height: 1, background: "var(--brass)" }} />
-        <div style={{ width: 7, height: 7, borderRight: "1.5px solid var(--brass)", borderTop: "1.5px solid var(--brass)", transform: "rotate(45deg)", marginLeft: -2 }} />
-      </div>
     </section>
   );
 }

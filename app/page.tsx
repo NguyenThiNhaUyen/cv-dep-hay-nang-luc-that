@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Scene1Intro } from "@/components/scenes/Scene1Intro";
 import { Scene2StudentA } from "@/components/scenes/Scene2StudentA";
@@ -30,6 +30,7 @@ const SCENE_LABELS = [
 export default function Home() {
   const [activeScenes, setActiveScenes] = useState<boolean[]>(new Array(TOTAL_SCENES).fill(false));
   const [currentScene, setCurrentScene] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
   
   // Role-playing state
   const [hasMadeChoice, setHasMadeChoice] = useState(false);
@@ -72,6 +73,18 @@ export default function Home() {
     return () => observer.disconnect();
   }, [hasMadeChoice]);
 
+  // Scroll progress tracking
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(Math.min(progress, 100));
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleChoice = (c: "A" | "B") => {
     setChoice(c);
     setHasMadeChoice(true);
@@ -79,8 +92,6 @@ export default function Home() {
       window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
     }, 400);
   };
-
-  const progressPct = ((currentScene) / (TOTAL_SCENES - 1)) * 100;
 
   return (
     <>
@@ -90,33 +101,28 @@ export default function Home() {
       {/* Title bar */}
       <header className="title-bar" style={{ zIndex: 600 }}>
         <span className="title-bar-brand">Behind The CV</span>
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={currentScene}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                fontFamily: "var(--font-heading)",
-                fontSize: "0.9rem",
-                fontStyle: "italic",
-                color: "var(--ink-faded)",
-              }}
-            >
-              {SCENE_LABELS[currentScene]}
-            </motion.span>
-          </AnimatePresence>
-          <span className="t-scene-num">
-            {String(currentScene + 1).padStart(2, "0")} / {String(TOTAL_SCENES).padStart(2, "0")}
-          </span>
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={currentScene}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              fontFamily: "var(--font-heading)",
+              fontSize: "0.9rem",
+              fontStyle: "italic",
+              color: "var(--ink-faded)",
+            }}
+          >
+            {SCENE_LABELS[currentScene]}
+          </motion.span>
+        </AnimatePresence>
       </header>
 
-      {/* Progress line */}
+      {/* Progress line — scroll-based */}
       <div className="progress-line" aria-hidden="true">
-        <div className="progress-fill" style={{ width: `${progressPct}%`, background: "var(--brass)" }} />
+        <div className="progress-fill" style={{ width: `${scrollProgress}%`, transition: "width 100ms ease-out" }} />
       </div>
 
       <div className="canvas-wrapper">

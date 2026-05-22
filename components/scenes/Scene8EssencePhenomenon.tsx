@@ -7,33 +7,33 @@ interface Scene8EssencePhenomenonProps {
 
 const FI = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
-const COMPARISON = [
+const CHARACTERISTICS = [
   {
-    id: "hien-tuong",
-    label: "Hiện Tượng (Surface)",
-    color: "var(--brass)",
-    bg: "rgba(184,136,42,0.07)",
-    border: "rgba(184,136,42,0.25)",
-    studentA: "CV thiết kế đẹp, bằng Giỏi, đầy từ khóa \"Proactive\", \"Leadership\"",
-    studentB: "CV đơn giản, bằng Khá — ít điểm nhấn về hình thức",
-    note: "Bên ngoài, dễ thay đổi, biểu hiện ra ngoài",
+    title: "Bản chất quyết định hiện tượng",
+    desc: "Bản chất như thế nào thì biểu hiện ra hiện tượng như thế đó. Ví dụ: Người chăm chỉ thường có kết quả tốt.",
   },
   {
-    id: "ban-chat",
-    label: "Bản Chất (Essence)",
-    color: "var(--crimson-light)",
-    bg: "rgba(139,38,53,0.07)",
-    border: "rgba(139,38,53,0.25)",
-    studentA: "Thiếu năng lực thực chiến — học để có điểm, chưa quen giải bài toán thực tế",
-    studentB: "Tư duy phân tích sắc bén — giải được bài toán kinh doanh thực của công ty",
-    note: "Bên trong, ổn định, quyết định sự vật là gì",
+    title: "Hiện tượng không phản ánh đầy đủ",
+    desc: "Hiện tượng có thể che giấu hoặc phản ánh không hoàn toàn bản chất. Ví dụ: Quảng cáo hấp dẫn nhưng chất lượng kém.",
   },
+  {
+    title: "Sự biến đổi",
+    desc: "Bản chất tương đối ổn định, hiện tượng thường biến đổi nhanh hơn.",
+  },
+];
+
+const METHODOLOGIES = [
+  "Khi nhận thức sự vật phải đi từ hiện tượng đến tìm hiểu bản chất bên trong.",
+  "Không nên đánh giá sự việc chỉ qua biểu hiện bên ngoài.",
+  "Muốn giải quyết đúng vấn đề phải tác động vào bản chất của nó.",
+  "Cần phân tích nhiều hiện tượng khác nhau để tránh nhận xét phiến diện.",
+  "Phải biết phân biệt hiện tượng thật và hiện tượng giả tạo.",
+  "Nhìn nhận vấn đề khách quan, toàn diện và lâu dài.",
 ];
 
 export function Scene8EssencePhenomenon({ isActive }: Scene8EssencePhenomenonProps) {
   return (
     <section className="scene scene-aged" aria-label="Scene 8: Bản chất và Hiện tượng">
-      {/* Diagonal pattern */}
       <div
         aria-hidden="true"
         style={{
@@ -49,9 +49,9 @@ export function Scene8EssencePhenomenon({ isActive }: Scene8EssencePhenomenonPro
 
       <div
         className="scene-inner"
-        style={{ zIndex: 10, display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 72, alignItems: "center" }}
+        style={{ zIndex: 10, display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 72, alignItems: "start", paddingTop: 20 }}
       >
-        {/* Left — concept */}
+        {/* Left — Khái niệm & Đặc điểm */}
         <div>
           <motion.div
             variants={FI}
@@ -109,196 +109,91 @@ export function Scene8EssencePhenomenon({ isActive }: Scene8EssencePhenomenonPro
             là những biểu hiện <em>ra bên ngoài</em> mà con người có thể cảm nhận bằng giác quan.
           </motion.p>
 
-          {/* Key principles */}
           <motion.div
             variants={FI}
             initial="hidden"
             animate={isActive ? "show" : "hidden"}
-            transition={{ duration: 0.65, delay: 0.55 }}
+            transition={{ duration: 0.65, delay: 0.5 }}
             style={{
-              background: "rgba(184,136,42,0.07)",
-              border: "1px solid rgba(184,136,42,0.2)",
+              background: "rgba(184,136,42,0.05)",
+              border: "1px solid rgba(184,136,42,0.15)",
               borderRadius: 3,
               padding: "16px 20px",
-              marginBottom: 20,
+              marginBottom: 14,
             }}
           >
-            <p className="t-scene-label" style={{ marginBottom: 10 }}>Nguyên Lý Cốt Lõi</p>
-            {[
-              "Bản chất quyết định hiện tượng — bản chất thế nào, hiện tượng thế đó.",
-              "Hiện tượng có thể phản ánh bản chất, nhưng không bao giờ phản ánh đầy đủ toàn bộ bản chất.",
-              "Hiện tượng có thể che lấp hoặc đánh lừa nhận thức nếu không thông qua thực tiễn để kiểm chứng.",
-            ].map((p, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, x: -8 }}
-                animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0 }}
-                transition={{ delay: 0.7 + i * 0.1 }}
-                className="t-body"
-                style={{ fontSize: "0.83rem", marginBottom: i < 2 ? 6 : 0, display: "flex", gap: 8 }}
-              >
-                <span style={{ color: "var(--brass)", flexShrink: 0 }}>→</span>
-                {p}
-              </motion.p>
-            ))}
-          </motion.div>
-
-          <motion.div
-            variants={FI}
-            initial="hidden"
-            animate={isActive ? "show" : "hidden"}
-            transition={{ duration: 0.65, delay: 0.75 }}
-          >
-            <p className="t-quote" style={{ fontSize: "0.9rem" }}>
-              "Bản chất không bộc lộ trực tiếp mà phải thông qua hoạt động thực tiễn.{" "}
-              <em style={{ color: "var(--brass)" }}>Thực tiễn là thước đo duy nhất để đánh giá bản chất.</em>"
+            <p className="t-scene-label" style={{ marginBottom: 8, color: "var(--brass)" }}>Mối quan hệ</p>
+            <p className="t-body" style={{ fontSize: "0.85rem", lineHeight: 1.7 }}>
+              Bản chất bao giờ cũng bộc lộ qua hiện tượng. Không có bản chất nào tồn tại ngoài hiện tượng và không có hiện tượng nào hoàn toàn không phản ánh bản chất.
             </p>
           </motion.div>
         </div>
 
-        {/* Right — comparison A vs B */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0 }}
-            transition={{ delay: 0.25 }}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "220px 1fr 1fr",
-              gap: 12,
-              alignItems: "center",
-              paddingBottom: 8,
-              borderBottom: "1px solid rgba(44,36,22,0.1)",
-            }}
-          >
-            <span />
-            {["Sinh viên A", "Sinh viên B"].map((s, i) => (
-              <span
-                key={i}
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 9,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: i === 0 ? "var(--brass)" : "var(--crimson-light)",
-                  textAlign: "center",
-                }}
-              >
-                {s}
-              </span>
-            ))}
-          </motion.div>
-
-          {COMPARISON.map((row, ri) => (
-            <motion.div
-              key={row.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-              transition={{ delay: 0.4 + ri * 0.2 }}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "220px 1fr 1fr",
-                gap: 12,
-                alignItems: "start",
-              }}
-            >
-              {/* Row label */}
-              <div
-                style={{
-                  padding: "14px 16px",
-                  background: row.bg,
-                  border: `1px solid ${row.border}`,
-                  borderRadius: 3,
-                }}
-              >
-                <p
+        {/* Right — So sánh & Ý nghĩa */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+          transition={{ delay: 0.25 }}
+          style={{ display: "flex", flexDirection: "column", gap: 24, paddingTop: 8 }}
+        >
+          <div>
+            <p className="t-scene-label" style={{ marginBottom: 12 }}>Đặc điểm Mối Quan Hệ</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {CHARACTERISTICS.map((char, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0 }}
+                  transition={{ delay: 0.45 + i * 0.1 }}
                   style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: 8.5,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: row.color,
-                    marginBottom: 4,
+                    padding: "16px 20px",
+                    background: "rgba(245,237,220,0.5)",
+                    borderLeft: "2px solid var(--brass)",
+                    borderRadius: "0 3px 3px 0",
                   }}
                 >
-                  {row.label}
-                </p>
-                <p className="t-body" style={{ fontSize: "0.75rem", color: "var(--ink-ghost)", fontStyle: "italic" }}>
-                  {row.note}
-                </p>
-              </div>
+                  <p style={{ fontWeight: 600, fontSize: "0.85rem", color: "var(--ink-light)", marginBottom: 4 }}>{char.title}</p>
+                  <p className="t-body" style={{ fontSize: "0.82rem", lineHeight: 1.6 }}>{char.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-              {/* Student A */}
-              <div
-                style={{
-                  padding: "14px 16px",
-                  background: "rgba(245,237,220,0.45)",
-                  border: "1px solid rgba(44,36,22,0.1)",
-                  borderRadius: 3,
-                  minHeight: 70,
-                }}
-              >
-                <span className="t-body" style={{ fontSize: "0.83rem", lineHeight: 1.7 }}>
-                  {row.studentA}
-                </span>
-              </div>
-
-              {/* Student B */}
-              <div
-                style={{
-                  padding: "14px 16px",
-                  background: "rgba(245,237,220,0.45)",
-                  border: "1px solid rgba(44,36,22,0.1)",
-                  borderRadius: 3,
-                  minHeight: 70,
-                }}
-              >
-                <span className="t-body" style={{ fontSize: "0.83rem", lineHeight: 1.7 }}>
-                  {row.studentB}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-
-          {/* Synthesis conclusion */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0 }}
             transition={{ delay: 0.9 }}
             style={{
-              padding: "18px 22px",
-              background: "rgba(44,36,22,0.06)",
+              padding: "20px 24px",
+              background: "rgba(44,36,22,0.04)",
               border: "1px solid var(--border-warm)",
               borderRadius: 3,
-              textAlign: "center",
             }}
           >
-            <p className="t-scene-label" style={{ marginBottom: 6 }}>Kết Luận</p>
-            <p className="t-body" style={{ fontSize: "0.85rem" }}>
-              Sự đánh giá qua một CV hoàn hảo rất dễ bị hiện tượng che lấp. Bằng việc đưa ra case study, nhà tuyển dụng đã dùng <em>thực tiễn</em> làm phép thử để bóc tách hiện tượng và chạm đến <em style={{ color: "var(--crimson-light)" }}>bản chất thực sự</em>.
-            </p>
+            <span className="t-scene-label" style={{ display: "inline-block", marginBottom: 12, color: "var(--crimson-light)" }}>
+              Ý Nghĩa Phương Pháp Luận
+            </span>
+            <ul style={{ paddingLeft: 16, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+              {METHODOLOGIES.map((item, i) => (
+                <li key={i} className="t-body" style={{ fontSize: "0.82rem", lineHeight: 1.5 }}>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Handwritten annotation */}
       <motion.span
         initial={{ opacity: 0 }}
         animate={isActive ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 1.2 }}
         className="annotation"
-        style={{ position: "absolute", bottom: 100, left: 80, zIndex: 5 }}
+        style={{ position: "absolute", bottom: 40, left: 80, zIndex: 5 }}
         aria-hidden="true"
       >
         bản chất mới quyết định!
       </motion.span>
-
-      {/* Connecting arrow */}
-      <div aria-hidden="true" style={{ position: "absolute", right: 32, top: "50%", transform: "translateY(-50%)", display: "flex", alignItems: "center", zIndex: 5, opacity: 0.4 }}>
-        <div style={{ width: 28, height: 1, background: "var(--brass)" }} />
-        <div style={{ width: 7, height: 7, borderRight: "1.5px solid var(--brass)", borderTop: "1.5px solid var(--brass)", transform: "rotate(45deg)", marginLeft: -2 }} />
-      </div>
     </section>
   );
 }
