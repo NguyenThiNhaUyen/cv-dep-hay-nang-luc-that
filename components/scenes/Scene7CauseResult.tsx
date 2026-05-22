@@ -8,13 +8,27 @@ interface Scene7CauseResultProps {
 const FI = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
 const CHAIN_A = [
-  { label: "Nguyên nhân", items: ["Học để lấy điểm", "Chạy theo số lượng chứng chỉ", "Ít thực hành thực tế"] },
+  { label: "Nguyên nhân", items: ["Học để lấy điểm, chạy theo chứng chỉ", "Ít thực hành thực tế", "Tư duy theo lý thuyết thuần túy"] },
   { label: "Kết quả", items: ["CV đẹp, GPA cao", "Kỹ năng ứng dụng yếu", "Thất bại khi gặp bài toán thực"] },
 ];
 
 const CHAIN_B = [
   { label: "Nguyên nhân", items: ["Học qua làm thực tế", "Chủ động tìm bài toán thật", "Phát triển tư duy phân tích"] },
   { label: "Kết quả", items: ["CV đơn giản hơn", "Năng lực giải quyết vấn đề cao", "Được nhận vào vị trí quan trọng"] },
+];
+
+// Phan biet nguyen co / dieu kien
+const NOTE_BOXES = [
+  {
+    title: "Nguyên cờ ≠ Nguyên nhân",
+    content: "A “an may\u201d hay \u201ccó người quen\u201d chỉ là nguyên cọ — không phải nguyên nhân thực sự khiến B được nhận.",
+    color: "rgba(184,136,42,0.8)",
+  },
+  {
+    title: "Điều kiện hỗ trợ",
+    content: "Buổi phỏng vấn chỉ là điều kiện — bản thân nó không sinh ra kết quả. Nguyên nhân thực là quá trình chuẩn bị năng lực của B.",
+    color: "rgba(139,38,53,0.8)",
+  },
 ];
 
 export function Scene7CauseResult({ isActive }: Scene7CauseResultProps) {
@@ -81,22 +95,44 @@ export function Scene7CauseResult({ isActive }: Scene7CauseResultProps) {
             animate={isActive ? "show" : "hidden"}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="t-body"
-            style={{ marginBottom: 16, lineHeight: 1.85 }}
+            style={{ marginBottom: 12, lineHeight: 1.85 }}
           >
-            Mọi hiện tượng đều có nguyên nhân; nguyên nhân sinh ra kết quả.
-            Kết quả đó lại trở thành nguyên nhân cho những kết quả tiếp theo.
+            <strong style={{ color: "var(--ink-light)", fontWeight: 500 }}>Nguyên nhân</strong>{" "}
+            là sự tác động lẫn nhau giữa các mặt, sự vật — làm xuất hiện{" "}
+            <strong style={{ color: "var(--ink-light)", fontWeight: 500 }}>kết quả</strong>:
+            những biến đổi do nguyên nhân gây ra.
           </motion.p>
+
+          <motion.div
+            variants={FI}
+            initial="hidden"
+            animate={isActive ? "show" : "hidden"}
+            transition={{ duration: 0.65, delay: 0.4 }}
+            style={{
+              background: "rgba(184,136,42,0.05)",
+              border: "1px solid rgba(184,136,42,0.15)",
+              borderRadius: 3,
+              padding: "10px 14px",
+              marginBottom: 14,
+            }}
+          >
+            <p className="t-body" style={{ fontSize: "0.82rem", lineHeight: 1.7 }}>
+              <span style={{ color: "var(--brass)" }}>Phân biệt:</span>{" "}
+              <strong>Nguyên cọ</strong> = xảy ra trước kết quả nhưng không sinh ra kết quả.{" "}
+              <strong>Điều kiện</strong> = hỗ trợ nguyên nhân nhưng không trực tiếp sinh ra kết quả.
+            </p>
+          </motion.div>
 
           <motion.p
             variants={FI}
             initial="hidden"
             animate={isActive ? "show" : "hidden"}
-            transition={{ duration: 0.7, delay: 0.42 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
             className="t-body"
-            style={{ marginBottom: 24, lineHeight: 1.85 }}
+            style={{ marginBottom: 20, lineHeight: 1.85 }}
           >
-            Thành công của B không phải "may mắn" — đó là kết quả tất yếu
-            của một quá trình học tập đúng hướng, tập trung vào thực chất.
+            Thành công của B không phải "may mắn" — đó là kết quả <em>tất yếu</em>{" "}
+            của một quá trình đầu tư đúng hướng, tập trung vào thực chất.
           </motion.p>
 
           {/* Principle box */}

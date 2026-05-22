@@ -9,7 +9,7 @@ import { Scene4Conflict } from "@/components/scenes/Scene4Conflict";
 import { Scene5Philosophy } from "@/components/scenes/Scene5Philosophy";
 import { Scene6ContentForm } from "@/components/scenes/Scene6ContentForm";
 import { Scene7CauseResult } from "@/components/scenes/Scene7CauseResult";
-import { Scene8Possibility } from "@/components/scenes/Scene8Possibility";
+import { Scene8EssencePhenomenon } from "@/components/scenes/Scene8EssencePhenomenon";
 import { Scene9FinalLesson } from "@/components/scenes/Scene9FinalLesson";
 
 const TOTAL_SCENES = 9;
@@ -22,7 +22,7 @@ const SCENE_LABELS = [
   "Triết Học",
   "Nội Dung & Hình Thức",
   "Nguyên Nhân & Kết Quả",
-  "Khả Năng & Hiện Thực",
+  "Bản Chất & Hiện Tượng",
   "Kết Luận",
 ];
 
@@ -192,7 +192,7 @@ export default function Home() {
           <Scene5Philosophy isActive={currentScene === 4} />
           <Scene6ContentForm isActive={currentScene === 5} />
           <Scene7CauseResult isActive={currentScene === 6} />
-          <Scene8Possibility isActive={currentScene === 7} />
+          <Scene8EssencePhenomenon isActive={currentScene === 7} />
           <Scene9FinalLesson isActive={currentScene === 8} onRestart={() => goTo(0)} />
         </div>
       </div>

@@ -21,8 +21,8 @@ const LESSONS = [
   },
   {
     num: "III",
-    title: "Chuyển hóa khả năng",
-    desc: "Tiềm năng chỉ có giá trị khi được hiện thực hóa qua thực tiễn và trải nghiệm cụ thể.",
+    title: "Bản chất ẩn sau hiện tượng",
+    desc: "Đừng đánh giá ứng viên chỉ qua biểu hiện bề ngoài. Năng lực thực sự nằm ở bản chất bên trong được rèn luyện qua thực tiễn.",
   },
 ];
 

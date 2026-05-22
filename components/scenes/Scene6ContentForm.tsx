@@ -10,11 +10,12 @@ const FI = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 const EXAMPLES = [
   {
     col: "Hình Thức (Form)",
+    desc: "Phương thức tồn tại & biểu hiện — thứ ta nhìn thấy đầu tiên",
     items: [
-      "CV thiết kế đẹp, bố cục chuyên nghiệp",
-      "Bằng tốt nghiệp loại xuất sắc",
-      "Tên trường danh tiếng",
+      "CV thiết kế đẹp, từ khóa đao to búa lớn",
+      "Bằng tốt nghiệp loại Giỏi",
       "Danh sách chứng chỉ dài",
+      "Ngôn ngữ hoa mỹ: \"Proactive\", \"Leadership\"",
     ],
     color: "var(--brass)",
     bg: "rgba(184,136,42,0.06)",
@@ -22,11 +23,12 @@ const EXAMPLES = [
   },
   {
     col: "Nội Dung (Content)",
+    desc: "Tổng hợp yếu tố tạo nên sự vật — thứ bên trong quyết định",
     items: [
-      "Tư duy phân tích vấn đề thực tế",
-      "Khả năng đưa ra giải pháp khả thi",
-      "Kỹ năng giao tiếp và thuyết phục",
-      "Kinh nghiệm từ thực tiễn",
+      "Tư duy phân tích, giải bài toán thực tế",
+      "Khả năng thực chiến trong phỏng vấn",
+      "Kỹ năng đưa ra giải pháp cụ thể, khả thi",
+      "Kinh nghiệm từ thực tiễn nghề nghiệp",
     ],
     color: "var(--crimson-light)",
     bg: "rgba(139,38,53,0.06)",
@@ -97,11 +99,11 @@ export function Scene6ContentForm({ isActive }: Scene6ContentFormProps) {
             animate={isActive ? "show" : "hidden"}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="t-body"
-            style={{ marginBottom: 16, lineHeight: 1.85 }}
+            style={{ marginBottom: 12, lineHeight: 1.85 }}
           >
-            <strong style={{ color: "var(--ink-light)", fontWeight: 500 }}>Nội dung</strong> là
-            tổng hợp những yếu tố, quá trình tạo nên sự vật —
-            tức là thứ bên trong, bản chất thực sự.
+            <strong style={{ color: "var(--ink-light)", fontWeight: 500 }}>Nội dung</strong>{" "}
+            là tổng hợp <em>tất cả những mặt, yếu tố, quá trình</em> tạo nên sự vật —
+            trả lời câu hỏi: <em style={{ color: "var(--brass)" }}>"Bên trong có gì?"</em>
           </motion.p>
 
           <motion.p
@@ -110,26 +112,48 @@ export function Scene6ContentForm({ isActive }: Scene6ContentFormProps) {
             animate={isActive ? "show" : "hidden"}
             transition={{ duration: 0.7, delay: 0.42 }}
             className="t-body"
-            style={{ marginBottom: 20, lineHeight: 1.85 }}
+            style={{ marginBottom: 16, lineHeight: 1.85 }}
           >
-            <strong style={{ color: "var(--ink-light)", fontWeight: 500 }}>Hình thức</strong> là
-            phương thức tồn tại và biểu hiện của nội dung — thứ ta nhìn thấy đầu tiên.
+            <strong style={{ color: "var(--ink-light)", fontWeight: 500 }}>Hình thức</strong>{" "}
+            là phương thức tồn tại và biểu hiện của nội dung —
+            trả lời câu hỏi: <em style={{ color: "var(--brass)" }}>"Nó biểu hiện như thế nào?"</em>
           </motion.p>
 
           <motion.div
             variants={FI}
             initial="hidden"
             animate={isActive ? "show" : "hidden"}
-            transition={{ duration: 0.65, delay: 0.55 }}
+            transition={{ duration: 0.65, delay: 0.5 }}
+            style={{
+              background: "rgba(184,136,42,0.05)",
+              border: "1px solid rgba(184,136,42,0.15)",
+              borderRadius: 3,
+              padding: "10px 14px",
+              marginBottom: 14,
+            }}
+          >
+            <p className="t-body" style={{ fontSize: "0.82rem", lineHeight: 1.7 }}>
+              <span style={{ color: "var(--brass)" }}>⚖ Quan hệ:</span>{" "}
+              Nội dung giữ vai trò <strong>quyết định</strong> hình thức.
+              Hình thức phù hợp sẽ thúc đẩy nội dung phát triển;
+              hình thức không phù hợp sẽ kìm hãm nội dung.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={FI}
+            initial="hidden"
+            animate={isActive ? "show" : "hidden"}
+            transition={{ duration: 0.65, delay: 0.63 }}
             style={{
               background: "rgba(184,136,42,0.07)",
               border: "1px solid rgba(184,136,42,0.2)",
               borderRadius: 3,
-              padding: "16px 20px",
-              marginBottom: 20,
+              padding: "14px 18px",
+              marginBottom: 16,
             }}
           >
-            <p className="t-quote" style={{ fontSize: "0.95rem" }}>
+            <p className="t-quote" style={{ fontSize: "0.88rem" }}>
               "Hình thức đẹp không tự nhiên tạo ra nội dung phong phú —
               nhưng nội dung tốt luôn tìm được hình thức phù hợp."
             </p>
@@ -139,12 +163,13 @@ export function Scene6ContentForm({ isActive }: Scene6ContentFormProps) {
             variants={FI}
             initial="hidden"
             animate={isActive ? "show" : "hidden"}
-            transition={{ duration: 0.6, delay: 0.68 }}
+            transition={{ duration: 0.6, delay: 0.76 }}
           >
-            <p className="t-scene-label" style={{ marginBottom: 6 }}>Bài Học</p>
-            <p className="t-body" style={{ fontSize: "0.88rem" }}>
-              Nhà tuyển dụng giỏi nhìn xuyên qua CV — tìm kiếm nội dung thực
-              chất ẩn sau hình thức trình bày.
+            <p className="t-scene-label" style={{ marginBottom: 6 }}>Bài Học Thực Tiễn</p>
+            <p className="t-body" style={{ fontSize: "0.84rem", lineHeight: 1.75 }}>
+              Nhà tuyển dụng giỏi nhìn xuyên qua <em>hình thức CV</em> —
+              tìm kiếm <em style={{ color: "var(--crimson-light)" }}>nội dung thực chất</em>:
+              khả năng tư duy và giải quyết bài toán của công ty.
             </p>
           </motion.div>
         </div>
@@ -158,6 +183,9 @@ export function Scene6ContentForm({ isActive }: Scene6ContentFormProps) {
         >
           {EXAMPLES.map((col, ci) => (
             <div key={col.col}>
+              <div style={{ padding: "4px 0 6px", marginBottom: 0 }}>
+                <span className="t-body" style={{ fontSize: "0.75rem", color: "var(--ink-ghost)", fontStyle: "italic" }}>{col.desc}</span>
+              </div>
               <div
                 style={{
                   padding: "10px 16px",

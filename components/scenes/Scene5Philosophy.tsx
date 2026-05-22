@@ -10,7 +10,7 @@ const FI = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 const CATEGORIES = [
   { num: "I", name: "Nội Dung & Hình Thức", scene: 6 },
   { num: "II", name: "Nguyên Nhân & Kết Quả", scene: 7 },
-  { num: "III", name: "Khả Năng & Hiện Thực", scene: 8 },
+  { num: "III", name: "Bản Chất & Hiện Tượng", scene: 8 },
 ];
 
 export function Scene5Philosophy({ isActive }: Scene5PhilosophyProps) {
