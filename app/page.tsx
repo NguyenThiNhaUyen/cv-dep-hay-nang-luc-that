@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Scene1Intro } from "@/components/scenes/Scene1Intro";
 import { Scene2StudentA } from "@/components/scenes/Scene2StudentA";
@@ -11,6 +11,7 @@ import { Scene6ContentForm } from "@/components/scenes/Scene6ContentForm";
 import { Scene7CauseResult } from "@/components/scenes/Scene7CauseResult";
 import { Scene8EssencePhenomenon } from "@/components/scenes/Scene8EssencePhenomenon";
 import { Scene9FinalLesson } from "@/components/scenes/Scene9FinalLesson";
+import { AIUsageModal } from "@/components/AIUsageModal";
 
 const TOTAL_SCENES = 9;
 
@@ -26,112 +27,67 @@ const SCENE_LABELS = [
   "Kết Luận",
 ];
 
-// Whether a scene uses the dark background (for UI color switching)
-const DARK_SCENES = new Set([4, 8]); // 0-indexed: scene 5 & 9
-
 export default function Home() {
+  const [activeScenes, setActiveScenes] = useState<boolean[]>(new Array(TOTAL_SCENES).fill(false));
   const [currentScene, setCurrentScene] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(true);
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
+  
+  // Role-playing state
+  const [hasMadeChoice, setHasMadeChoice] = useState(false);
+  const [choice, setChoice] = useState<"A" | "B" | null>(null);
+  
+  // Modal state
+  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
 
-  const isDark = DARK_SCENES.has(currentScene);
+  const sceneRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const goTo = useCallback(
-    (index: number) => {
-      if (isAnimating) return;
-      if (index < 0 || index >= TOTAL_SCENES) return;
-      setIsAnimating(true);
-      setCurrentScene(index);
-      setTimeout(() => setIsAnimating(false), 900);
-    },
-    [isAnimating]
-  );
-
-  const goNext = useCallback(() => goTo(currentScene + 1), [currentScene, goTo]);
-  const goPrev = useCallback(() => goTo(currentScene - 1), [currentScene, goTo]);
-
-  // Keyboard navigation
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === " ") {
-        e.preventDefault();
-        goNext();
-      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-        e.preventDefault();
-        goPrev();
-      }
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [goNext, goPrev]);
+    // Force scene 0 to be active immediately
+    setActiveScenes(prev => {
+      const newArr = [...prev];
+      newArr[0] = true;
+      return newArr;
+    });
 
-  // Wheel navigation (with debounce)
-  const wheelTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  useEffect(() => {
-    const handler = (e: WheelEvent) => {
-      e.preventDefault();
-      if (wheelTimer.current) return;
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        // Horizontal scroll
-        if (e.deltaX > 40) goNext();
-        else if (e.deltaX < -40) goPrev();
-      } else {
-        if (e.deltaY > 40) goNext();
-        else if (e.deltaY < -40) goPrev();
-      }
-      wheelTimer.current = setTimeout(() => {
-        wheelTimer.current = null;
-      }, 1000);
-    };
-    window.addEventListener("wheel", handler, { passive: false });
-    return () => {
-      window.removeEventListener("wheel", handler);
-      if (wheelTimer.current) clearTimeout(wheelTimer.current);
-    };
-  }, [goNext, goPrev]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute("data-index"));
+            setActiveScenes((prev) => {
+              const newArr = [...prev];
+              newArr[index] = true;
+              return newArr;
+            });
+            setCurrentScene(index);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
 
-  // Touch navigation
-  useEffect(() => {
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartX.current = e.touches[0].clientX;
-      touchStartY.current = e.touches[0].clientY;
-    };
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (touchStartX.current === null || touchStartY.current === null) return;
-      const dx = e.changedTouches[0].clientX - touchStartX.current;
-      const dy = e.changedTouches[0].clientY - touchStartY.current;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
-        if (dx < 0) goNext();
-        else goPrev();
-      }
-      touchStartX.current = null;
-      touchStartY.current = null;
-    };
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
-    return () => {
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, [goNext, goPrev]);
+    sceneRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
 
-  // Hide tooltip after 4s
-  useEffect(() => {
-    const t = setTimeout(() => setShowTooltip(false), 4000);
-    return () => clearTimeout(t);
-  }, []);
+    return () => observer.disconnect();
+  }, [hasMadeChoice]);
+
+  const handleChoice = (c: "A" | "B") => {
+    setChoice(c);
+    setHasMadeChoice(true);
+    setTimeout(() => {
+      window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
+    }, 400);
+  };
 
   const progressPct = ((currentScene) / (TOTAL_SCENES - 1)) * 100;
 
   return (
     <>
-      {/* ─── Texture overlays ─── */}
       <div className="parchment-texture" aria-hidden="true" />
       <div className="paper-vignette" aria-hidden="true" />
 
-      {/* ─── Title bar ─── */}
+      {/* Title bar */}
       <header className="title-bar" style={{ zIndex: 600 }}>
         <span className="title-bar-brand">Behind The CV</span>
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
@@ -158,117 +114,114 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ─── Progress line ─── */}
+      {/* Progress line */}
       <div className="progress-line" aria-hidden="true">
-        <div className="progress-fill" style={{ width: `${progressPct}%` }} />
+        <div className="progress-fill" style={{ width: `${progressPct}%`, background: "var(--brass)" }} />
       </div>
 
-      {/* ─── Main canvas ─── */}
-      <div className="canvas-wrapper" style={{ top: 54 }}>
-        {/* Horizontal connecting line (background) */}
-        <div
-          className="board-bg-line"
-          aria-hidden="true"
-          style={{
-            left: 0,
-            right: 0,
-            top: "50%",
-          }}
-        />
+      <div className="canvas-wrapper">
+        <div className="canvas-track" style={{ paddingTop: 54 }}>
+          
+          <div ref={el => { sceneRefs.current[0] = el; }} data-index={0}>
+            <Scene1Intro isActive={activeScenes[0]} onNext={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })} />
+          </div>
+          <div ref={el => { sceneRefs.current[1] = el; }} data-index={1}>
+            <Scene2StudentA isActive={activeScenes[1]} />
+          </div>
+          <div ref={el => { sceneRefs.current[2] = el; }} data-index={2}>
+            <Scene3StudentB isActive={activeScenes[2]} />
+          </div>
 
-        {/* Canvas track — slides horizontally */}
-        <div
-          className="canvas-track"
-          style={{
-            transform: `translateX(-${currentScene * 100}vw)`,
-          }}
-          role="region"
-          aria-label="Horizontal philosophy board"
-        >
-          <Scene1Intro isActive={currentScene === 0} onNext={goNext} />
-          <Scene2StudentA isActive={currentScene === 1} />
-          <Scene3StudentB isActive={currentScene === 2} />
-          <Scene4Conflict isActive={currentScene === 3} />
-          <Scene5Philosophy isActive={currentScene === 4} />
-          <Scene6ContentForm isActive={currentScene === 5} />
-          <Scene7CauseResult isActive={currentScene === 6} />
-          <Scene8EssencePhenomenon isActive={currentScene === 7} />
-          <Scene9FinalLesson isActive={currentScene === 8} onRestart={() => goTo(0)} />
+          {/* INTERACTIVE ROLE-PLAYING CHOICE */}
+          <div style={{
+            minHeight: "40vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "80px 20px",
+            background: "linear-gradient(to bottom, transparent, rgba(44,36,22,0.03), transparent)"
+          }}>
+            {!hasMadeChoice ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                style={{ textAlign: "center", maxWidth: 600 }}
+              >
+                <h3 className="t-heading" style={{ marginBottom: 16 }}>Đến lượt bạn đánh giá</h3>
+                <p className="t-body" style={{ marginBottom: 40 }}>
+                  Với tư cách là Giám đốc Nhân sự (HR), đứng trước hai ứng viên này, bạn sẽ chọn ai cho vị trí quản lý tập sự? Hãy đưa ra quyết định để xem triết lý ẩn sau lựa chọn của bạn.
+                </p>
+                <div style={{ display: "flex", gap: 20, justifyContent: "center" }}>
+                  <button className="btn-outline" onClick={() => handleChoice("A")} style={{ width: 220, justifyContent: "center", borderColor: "var(--brass-dark)" }}>
+                    Tuyển Sinh Viên A
+                  </button>
+                  <button className="btn-brass" onClick={() => handleChoice("B")} style={{ width: 220, justifyContent: "center", background: "var(--crimson-light)" }}>
+                    Tuyển Sinh Viên B
+                  </button>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={{ textAlign: "center" }}
+              >
+                <p className="t-scene-label" style={{ fontSize: 11, marginBottom: 12 }}>
+                  Bạn đã chọn Sinh Viên {choice}
+                </p>
+                <p className="t-quote" style={{ color: "var(--ink)" }}>
+                  Quyết định của bạn có giống với kết quả thực tế?<br/>
+                  Hãy tiếp tục cuộn xuống để xem phân tích triết học.
+                </p>
+              </motion.div>
+            )}
+          </div>
+
+          {/* REVEAL REMAINING SCENES ONLY AFTER CHOICE */}
+          {hasMadeChoice && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+            >
+              <div ref={el => { sceneRefs.current[3] = el; }} data-index={3}>
+                <Scene4Conflict isActive={activeScenes[3]} />
+              </div>
+              <div ref={el => { sceneRefs.current[4] = el; }} data-index={4}>
+                <Scene5Philosophy isActive={activeScenes[4]} />
+              </div>
+              <div ref={el => { sceneRefs.current[5] = el; }} data-index={5}>
+                <Scene6ContentForm isActive={activeScenes[5]} />
+              </div>
+              <div ref={el => { sceneRefs.current[6] = el; }} data-index={6}>
+                <Scene7CauseResult isActive={activeScenes[6]} />
+              </div>
+              <div ref={el => { sceneRefs.current[7] = el; }} data-index={7}>
+                <Scene8EssencePhenomenon isActive={activeScenes[7]} />
+              </div>
+              <div ref={el => { sceneRefs.current[8] = el; }} data-index={8}>
+                <Scene9FinalLesson isActive={activeScenes[8]} onRestart={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+              </div>
+            </motion.div>
+          )}
+
         </div>
       </div>
+      
+      {/* AI Usage Report Button */}
+      <div style={{ position: "fixed", bottom: 24, right: 24, zIndex: 600 }}>
+        <button 
+          className="btn-outline" 
+          onClick={() => setIsAIModalOpen(true)}
+          style={{ padding: "8px 16px", fontSize: 9, background: "rgba(245, 237, 220, 0.9)", backdropFilter: "blur(4px)" }}
+        >
+          ✦ AI Usage
+        </button>
+      </div>
 
-      {/* ─── Left arrow ─── */}
-      <button
-        className="nav-arrow nav-arrow-left"
-        onClick={goPrev}
-        disabled={currentScene === 0}
-        aria-label="Cảnh trước"
-        style={{ top: "calc(50% + 27px)" }}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        </svg>
-      </button>
-
-      {/* ─── Right arrow ─── */}
-      <button
-        className="nav-arrow nav-arrow-right"
-        onClick={goNext}
-        disabled={currentScene === TOTAL_SCENES - 1}
-        aria-label="Cảnh tiếp theo"
-        style={{ top: "calc(50% + 27px)" }}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </button>
-
-      {/* ─── Scene dot navigation ─── */}
-      <nav className="canvas-nav" aria-label="Điều hướng cảnh" style={{ bottom: 28 }}>
-        {Array.from({ length: TOTAL_SCENES }, (_, i) => (
-          <button
-            key={i}
-            className={`nav-dot${currentScene === i ? " active" : ""}`}
-            onClick={() => goTo(i)}
-            aria-label={`Cảnh ${i + 1}: ${SCENE_LABELS[i]}`}
-            aria-current={currentScene === i ? "true" : undefined}
-            title={SCENE_LABELS[i]}
-          />
-        ))}
-      </nav>
-
-      {/* ─── Keyboard hint tooltip ─── */}
-      <AnimatePresence>
-        {showTooltip && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.4 }}
-            style={{
-              position: "fixed",
-              bottom: 80,
-              left: "50%",
-              transform: "translateX(-50%)",
-              zIndex: 600,
-              background: "rgba(44,36,22,0.85)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(184,136,42,0.2)",
-              borderRadius: 4,
-              padding: "8px 18px",
-              fontFamily: "var(--font-display)",
-              fontSize: 8,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "rgba(245,237,220,0.7)",
-              pointerEvents: "none",
-              whiteSpace: "nowrap",
-            }}
-          >
-            ← → phím mũi tên · cuộn chuột · vuốt
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <AIUsageModal isOpen={isAIModalOpen} onClose={() => setIsAIModalOpen(false)} />
     </>
   );
 }

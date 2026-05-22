@@ -56,8 +56,7 @@
 
 html, body {
   width: 100%;
-  height: 100%;
-  overflow: hidden; /* Canvas handles its own scroll */
+  min-height: 100%;
   background: var(--parchment);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -109,30 +108,28 @@ button:focus-visible, a:focus-visible {
    HORIZONTAL CANVAS
    ============================================================ */
 .canvas-wrapper {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
+  position: relative;
+  width: 100%;
   z-index: 10;
 }
 
 .canvas-track {
   display: flex;
-  height: 100vh;
-  will-change: transform;
-  transition: transform var(--t-canvas);
+  flex-direction: column;
+  width: 100%;
 }
 
 /* ============================================================
    SCENE — Full viewport panel
    ============================================================ */
 .scene {
-  flex: 0 0 100vw;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8vh 0;
   overflow: hidden;
 }
 
@@ -161,15 +158,7 @@ button:focus-visible, a:focus-visible {
    CONNECTING LINES (SVG layer between scenes)
    ============================================================ */
 .scene-connector {
-  position: absolute;
-  right: -60px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  gap: 0;
+  display: none; /* Hide horizontal connectors for vertical layout */
 }
 
 .connector-line {
