@@ -193,7 +193,7 @@ export default function Home() {
               transition={{ duration: 1.5 }}
             >
               <div ref={el => { sceneRefs.current[3] = el; }} data-index={3}>
-                <Scene4Conflict isActive={activeScenes[3]} />
+                <Scene4Conflict isActive={activeScenes[3]} userChoice={choice} />
               </div>
               <div ref={el => { sceneRefs.current[4] = el; }} data-index={4}>
                 <Scene5Philosophy isActive={activeScenes[4]} />

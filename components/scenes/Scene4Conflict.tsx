@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 interface Scene4ConflictProps {
   isActive: boolean;
+  userChoice?: "A" | "B" | null;
 }
 
 const FI = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
@@ -14,7 +15,7 @@ const A_THOUGHTS = [
   "Tôi làm nhiều hơn B gấp đôi, sao lại không được?",
 ];
 
-export function Scene4Conflict({ isActive }: Scene4ConflictProps) {
+export function Scene4Conflict({ isActive, userChoice }: Scene4ConflictProps) {
   return (
     <section className="scene scene-aged" aria-label="Scene 4: Xung đột">
       {/* Atmospheric crack / tension line */}
@@ -47,6 +48,31 @@ export function Scene4Conflict({ isActive }: Scene4ConflictProps) {
             <span className="step-badge">IV</span>
             <span className="t-scene-label">Quan Điểm Của A</span>
           </motion.div>
+
+          {userChoice === "A" && (
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+              transition={{ delay: 0.2 }}
+              style={{ padding: "12px 16px", background: "rgba(184,136,42,0.06)", borderLeft: "3px solid var(--brass)", marginBottom: 24 }}
+            >
+              <p className="t-body" style={{ fontSize: "0.9rem" }}>
+                <strong>Bạn đã ưu ái Sinh Viên A.</strong> Nhưng trong thực tế, Giám đốc nhân sự đã đánh trượt ứng viên này. Hãy cùng xem phản ứng của A...
+              </p>
+            </motion.div>
+          )}
+          {userChoice === "B" && (
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+              transition={{ delay: 0.2 }}
+              style={{ padding: "12px 16px", background: "rgba(184,136,42,0.06)", borderLeft: "3px solid var(--brass)", marginBottom: 24 }}
+            >
+              <p className="t-body" style={{ fontSize: "0.9rem" }}>
+                <strong>Bạn đã chọn giống Giám đốc nhân sự!</strong> Cả bạn và công ty đều chọn Sinh Viên B. Tuy nhiên, Sinh Viên A lại rất bức xúc và không phục. Hãy cùng xem A nghĩ gì...
+              </p>
+            </motion.div>
+          )}
 
           <motion.h2
             variants={FI}
