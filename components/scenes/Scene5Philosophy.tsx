@@ -127,10 +127,9 @@ export function Scene5Philosophy({ isActive }: Scene5PhilosophyProps) {
           animate={isActive ? "show" : "hidden"}
           transition={{ duration: 0.7, delay: 0.38 }}
           className="t-body-dark"
-          style={{ marginBottom: 48, maxWidth: 520, margin: "0 auto 48px" }}
+          style={{ marginBottom: 48, maxWidth: 640, margin: "0 auto 48px", lineHeight: 1.85 }}
         >
-          Phép biện chứng duy vật cung cấp cho chúng ta các cặp phạm trù —
-          những công cụ tư duy để nhìn thấu hiện tượng, tới bản chất sự vật.
+          Phép biện chứng duy vật không nhìn sự vật qua những biểu hiện cô lập, tĩnh tại, mà luôn đặt chúng trong mối liên hệ phổ biến, sự vận động không ngừng và bản chất bên trong. Hãy cùng dùng lăng kính này để giải mã bài toán nhân sự trên.
         </motion.p>
 
         {/* Three category pills */}

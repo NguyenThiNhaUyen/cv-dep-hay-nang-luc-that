@@ -17,8 +17,8 @@
   --parchment-deep: #D4C4A0;
   --ink:            #2C2416;
   --ink-light:      #4A3D28;
-  --ink-faded:      #7A6A52;
-  --ink-ghost:      #A89880;
+  --ink-faded:      #60503B;
+  --ink-ghost:      #8A7B62;
   --brass:          #B8882A;
   --brass-light:    #D4A83C;
   --brass-dark:     #8A6420;
@@ -272,7 +272,7 @@ button:focus-visible, a:focus-visible {
   font-family: var(--font-body);
   font-size: clamp(0.88rem, 1.2vw, 1rem);
   line-height: 1.75;
-  color: rgba(232, 217, 192, 0.75);
+  color: rgba(232, 217, 192, 0.9);
   font-weight: 400;
 }
 

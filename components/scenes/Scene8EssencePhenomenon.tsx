@@ -126,8 +126,8 @@ export function Scene8EssencePhenomenon({ isActive }: Scene8EssencePhenomenonPro
             <p className="t-scene-label" style={{ marginBottom: 10 }}>Nguyên Lý Cốt Lõi</p>
             {[
               "Bản chất quyết định hiện tượng — bản chất thế nào, hiện tượng thế đó.",
-              "Hiện tượng không phản ánh đầy đủ bản chất — có thể che giấu sự thật.",
-              "Không nên đánh giá sự vật chỉ qua vẻ bề ngoài.",
+              "Hiện tượng có thể phản ánh bản chất, nhưng không bao giờ phản ánh đầy đủ toàn bộ bản chất.",
+              "Hiện tượng có thể che lấp hoặc đánh lừa nhận thức nếu không thông qua thực tiễn để kiểm chứng.",
             ].map((p, i) => (
               <motion.p
                 key={i}
@@ -150,8 +150,8 @@ export function Scene8EssencePhenomenon({ isActive }: Scene8EssencePhenomenonPro
             transition={{ duration: 0.65, delay: 0.75 }}
           >
             <p className="t-quote" style={{ fontSize: "0.9rem" }}>
-              "Muốn đánh giá đúng phải đi sâu vào bản chất,{" "}
-              <em style={{ color: "var(--brass)" }}>tránh chỉ nhìn hiện tượng bề ngoài.</em>"
+              "Bản chất không bộc lộ trực tiếp mà phải thông qua hoạt động thực tiễn.{" "}
+              <em style={{ color: "var(--brass)" }}>Thực tiễn là thước đo duy nhất để đánh giá bản chất.</em>"
             </p>
           </motion.div>
         </div>
@@ -276,10 +276,7 @@ export function Scene8EssencePhenomenon({ isActive }: Scene8EssencePhenomenonPro
           >
             <p className="t-scene-label" style={{ marginBottom: 6 }}>Kết Luận</p>
             <p className="t-body" style={{ fontSize: "0.85rem" }}>
-              A bị loại vì nhà tuyển dụng nhìn xuyên qua{" "}
-              <em>hiện tượng CV đẹp</em> — thấy{" "}
-              <em style={{ color: "var(--crimson-light)" }}>bản chất năng lực</em> còn yếu.
-              B đã để bản chất thực chiến của mình tự nói lên.
+              Sự đánh giá qua một CV hoàn hảo rất dễ bị hiện tượng che lấp. Bằng việc đưa ra case study, nhà tuyển dụng đã dùng <em>thực tiễn</em> làm phép thử để bóc tách hiện tượng và chạm đến <em style={{ color: "var(--crimson-light)" }}>bản chất thực sự</em>.
             </p>
           </motion.div>
         </div>

@@ -84,11 +84,11 @@ export function Scene9FinalLesson({ isActive, onRestart }: Scene9FinalLessonProp
               className="t-display-light"
               style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", marginBottom: 18 }}
             >
-              Năng lực thật{" "}
+              Thực tiễn là{" "}
               <em style={{ color: "var(--brass)", fontStyle: "italic" }}>
-                quan trọng hơn
+                thước đo
               </em>
-              {" "}ngoại hình.
+              {" "}chân lý.
             </motion.h2>
 
             <motion.div
@@ -111,9 +111,7 @@ export function Scene9FinalLesson({ isActive, onRestart }: Scene9FinalLessonProp
               className="t-body-dark"
               style={{ marginBottom: 32, lineHeight: 1.85 }}
             >
-              Phép biện chứng duy vật không chỉ là lý thuyết triết học —
-              đó là cách nhìn thế giới toàn diện hơn, sâu sắc hơn, và
-              trung thực hơn với bản chất sự vật.
+              Trong nhận thức và đánh giá con người, cần vượt qua biểu hiện bề ngoài để tiếp cận bản chất thông qua thực tiễn. Phép biện chứng duy vật cho thấy: bản chất không bộc lộ trực tiếp qua hiện tượng, mà cần được nhận thức thông qua quá trình phân tích và hoạt động thực tiễn.
             </motion.p>
 
             {/* Reference */}
@@ -143,6 +141,38 @@ export function Scene9FinalLesson({ isActive, onRestart }: Scene9FinalLessonProp
               <p className="t-body-dark" style={{ fontSize: "0.85rem", fontStyle: "italic" }}>
                 Giáo trình Triết học Mác–Lênin, Chương 2: Phép biện chứng duy vật —
                 Các cặp phạm trù cơ bản. Bộ Giáo dục & Đào tạo, 2021.
+              </p>
+            </motion.div>
+
+            {/* Credits */}
+            <motion.div
+              variants={FI}
+              initial="hidden"
+              animate={isActive ? "show" : "hidden"}
+              transition={{ duration: 0.65, delay: 0.6 }}
+              style={{
+                padding: "18px 22px",
+                background: "rgba(184,136,42,0.06)",
+                border: "1px solid rgba(184,136,42,0.15)",
+                borderRadius: 3,
+                marginBottom: 32,
+              }}
+            >
+              <p style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 8,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: "rgba(184,136,42,0.55)",
+                marginBottom: 8,
+              }}>
+                ❧ Thông Tin Dự Án
+              </p>
+              <p className="t-body-dark" style={{ fontSize: "0.85rem", fontStyle: "italic", marginBottom: 6 }}>
+                Học phần: Triết học Mác–Lênin (MLN111)
+              </p>
+              <p className="t-body-dark" style={{ fontSize: "0.85rem", fontStyle: "italic" }}>
+                Một nghiên cứu ứng dụng phép biện chứng duy vật vào phân tích case study tuyển dụng.
               </p>
             </motion.div>
 

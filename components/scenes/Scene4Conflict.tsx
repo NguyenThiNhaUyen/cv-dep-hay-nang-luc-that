@@ -56,8 +56,8 @@ export function Scene4Conflict({ isActive }: Scene4ConflictProps) {
             className="t-heading"
             style={{ marginBottom: 20, fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}
           >
-            "B chỉ là{" "}
-            <em className="t-accent">may mắn.</em>"
+            Góc nhìn dừng ở{" "}
+            <em className="t-accent">hiện tượng.</em>
           </motion.h2>
 
           <motion.p
@@ -66,10 +66,9 @@ export function Scene4Conflict({ isActive }: Scene4ConflictProps) {
             animate={isActive ? "show" : "hidden"}
             transition={{ duration: 0.7, delay: 0.22 }}
             className="t-body"
-            style={{ marginBottom: 24 }}
+            style={{ marginBottom: 24, lineHeight: 1.85 }}
           >
-            Sau khi biết kết quả, A cảm thấy bất công. Với những nỗ lực
-            xây dựng CV suốt 4 năm, tại sao kết quả lại như vậy?
+            Khi biết kết quả, A cho rằng B chỉ "ăn may". Thực chất, A đang đánh giá sự việc hoàn toàn từ lăng kính hiện tượng bề ngoài (CV, bằng cấp), mà bỏ qua bản chất năng lực thực sự được yêu cầu.
           </motion.p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -159,7 +158,7 @@ export function Scene4Conflict({ isActive }: Scene4ConflictProps) {
             style={{ display: "block", textAlign: "right", marginTop: 16, paddingRight: 20 }}
             aria-hidden="true"
           >
-            đây là sự thiên kiến nhận thức
+            mắc kẹt trong bề ngoài
           </motion.span>
         </div>
       </div>

@@ -87,9 +87,7 @@ export function Scene2StudentA({ isActive }: Scene2StudentAProps) {
             className="t-body"
             style={{ marginBottom: 20, lineHeight: 1.85 }}
           >
-            Sinh viên A tốt nghiệp loại xuất sắc từ trường top, có CV thiết
-            kế chuyên nghiệp, kín đặc thành tích. Nhà tuyển dụng nhìn vào hồ
-            sơ là ấn tượng ngay.
+            Sinh viên A tốt nghiệp loại xuất sắc, CV thiết kế chuyên nghiệp, sở hữu nền tảng lý thuyết vững chắc và nắm rõ các mô hình quản trị kinh điển. Hồ sơ bề ngoài đạt điểm tối đa.
           </motion.p>
 
           <motion.p
@@ -98,14 +96,11 @@ export function Scene2StudentA({ isActive }: Scene2StudentAProps) {
             animate={isActive ? "show" : "hidden"}
             transition={{ duration: 0.7, delay: 0.42 }}
             className="t-body"
-            style={{ marginBottom: 28 }}
+            style={{ marginBottom: 28, lineHeight: 1.85 }}
           >
-            Thế nhưng, trong buổi phỏng vấn thực tế — khi được yêu cầu phân
-            tích một case study, A lúng túng, trình bày vòng vo, không đưa ra
-            được giải pháp khả thi.
+            Tuy nhiên, trong buổi phỏng vấn, khi đối mặt với một case study thực tiễn, A phân tích đúng sách vở nhưng không thể thích ứng với những dữ kiện thay đổi liên tục. A tối ưu tốt CV, giỏi thi cử, nhưng thiếu tư duy thực chiến.
           </motion.p>
 
-          {/* Quote */}
           <motion.div
             variants={FI}
             initial="hidden"
@@ -117,7 +112,7 @@ export function Scene2StudentA({ isActive }: Scene2StudentAProps) {
             }}
           >
             <p className="t-quote" style={{ fontSize: "1rem" }}>
-              "Hình thức đẹp — nhưng nội dung chưa đủ sức thuyết phục."
+              "Hình thức hoàn hảo — nhưng nội dung thực chất lại rập khuôn, thiếu linh hoạt."
             </p>
           </motion.div>
         </div>

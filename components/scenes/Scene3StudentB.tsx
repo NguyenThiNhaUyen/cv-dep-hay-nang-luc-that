@@ -80,12 +80,12 @@ export function Scene3StudentB({ isActive }: Scene3StudentBProps) {
             animate={isActive ? "show" : "hidden"}
             transition={{ duration: 0.75, delay: 0.1 }}
             className="t-heading"
-            style={{ marginBottom: 24 }}
+            style={{ marginBottom: 24, fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}
           >
-            Ba câu hỏi —{" "}
-            <em className="t-crimson">B giải quyết</em>
+            Bắt rễ từ thực tiễn,{" "}
+            <em className="t-crimson">linh hoạt</em>
             <br />
-            từng vấn đề thực tế.
+            và sắc bén.
           </motion.h2>
 
           {/* Interview moments */}
@@ -229,7 +229,7 @@ export function Scene3StudentB({ isActive }: Scene3StudentBProps) {
             className="philosophy-badge"
             style={{ width: "100%", justifyContent: "center" }}
           >
-            <span>Năng lực thật &gt; Hình thức</span>
+            <span>Tư duy thực chiến &gt; Bằng cấp tĩnh</span>
           </motion.div>
         </div>
       </div>

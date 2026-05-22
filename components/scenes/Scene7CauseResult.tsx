@@ -17,20 +17,6 @@ const CHAIN_B = [
   { label: "Kết quả", items: ["CV đơn giản hơn", "Năng lực giải quyết vấn đề cao", "Được nhận vào vị trí quan trọng"] },
 ];
 
-// Phan biet nguyen co / dieu kien
-const NOTE_BOXES = [
-  {
-    title: "Nguyên cờ ≠ Nguyên nhân",
-    content: "A “an may\u201d hay \u201ccó người quen\u201d chỉ là nguyên cọ — không phải nguyên nhân thực sự khiến B được nhận.",
-    color: "rgba(184,136,42,0.8)",
-  },
-  {
-    title: "Điều kiện hỗ trợ",
-    content: "Buổi phỏng vấn chỉ là điều kiện — bản thân nó không sinh ra kết quả. Nguyên nhân thực là quá trình chuẩn bị năng lực của B.",
-    color: "rgba(139,38,53,0.8)",
-  },
-];
-
 export function Scene7CauseResult({ isActive }: Scene7CauseResultProps) {
   return (
     <section className="scene scene-warm" aria-label="Scene 7: Nguyên nhân và Kết quả">
@@ -117,9 +103,10 @@ export function Scene7CauseResult({ isActive }: Scene7CauseResultProps) {
             }}
           >
             <p className="t-body" style={{ fontSize: "0.82rem", lineHeight: 1.7 }}>
-              <span style={{ color: "var(--brass)" }}>Phân biệt:</span>{" "}
-              <strong>Nguyên cọ</strong> = xảy ra trước kết quả nhưng không sinh ra kết quả.{" "}
-              <strong>Điều kiện</strong> = hỗ trợ nguyên nhân nhưng không trực tiếp sinh ra kết quả.
+              <span style={{ color: "var(--brass)" }}>Phân tích tình huống:</span><br />
+              <strong>Nguyên cớ:</strong> Gặp case study đánh giá năng lực thực tế.<br />
+              <strong>Điều kiện:</strong> Môi trường tuyển dụng yêu cầu khả năng thực chiến.<br />
+              <strong>Nguyên nhân cốt lõi:</strong> Khoảng cách tư duy thực tiễn giữa A và B.
             </p>
           </motion.div>
 
@@ -131,8 +118,7 @@ export function Scene7CauseResult({ isActive }: Scene7CauseResultProps) {
             className="t-body"
             style={{ marginBottom: 20, lineHeight: 1.85 }}
           >
-            Thành công của B không phải "may mắn" — đó là kết quả <em>tất yếu</em>{" "}
-            của một quá trình đầu tư đúng hướng, tập trung vào thực chất.
+            Việc A coi B "ăn may" là sự nhầm lẫn giữa nguyên cớ và nguyên nhân. Thành công của B là kết quả <em>tất yếu</em> của một quá trình đầu tư tư duy đúng hướng, hội tụ đủ điều kiện thực tế để bộc lộ.
           </motion.p>
 
           {/* Principle box */}

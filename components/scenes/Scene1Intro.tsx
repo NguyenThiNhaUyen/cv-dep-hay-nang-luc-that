@@ -91,7 +91,7 @@ export function Scene1Intro({ isActive, onNext }: Scene1IntroProps) {
       ))}
 
       {/* Center content */}
-      <div className="scene-inner-center" style={{ zIndex: 10 }}>
+      <div className="scene-inner-center" style={{ zIndex: 10, marginTop: "-8vh" }}>
         {/* Overline label */}
         <motion.div
           variants={FI}
@@ -155,12 +155,33 @@ export function Scene1Intro({ isActive, onNext }: Scene1IntroProps) {
           variants={FI}
           initial="hidden"
           animate={isActive ? "show" : "hidden"}
-          transition={{ duration: 0.7, delay: 0.62 }}
+          transition={{ duration: 0.7, delay: 0.52 }}
           className="t-body"
-          style={{ marginBottom: 52, maxWidth: 520, margin: "0 auto 52px" }}
+          style={{ marginBottom: 16, lineHeight: 1.85, maxWidth: 500, margin: "0 auto 16px" }}
         >
-          Một nghiên cứu triết học về phép biện chứng duy vật qua tình huống
-          tuyển dụng thực tế. Hãy di chuyển qua từng cảnh để khám phá.
+          Hai sinh viên tốt nghiệp. Hai con đường sự nghiệp khác nhau.
+          Ai là người thực sự có năng lực, và ai chỉ có một "vỏ bọc" hoàn hảo?
+        </motion.p>
+
+        <motion.p
+          variants={FI}
+          initial="hidden"
+          animate={isActive ? "show" : "hidden"}
+          transition={{ duration: 0.7, delay: 0.65 }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "0.85rem",
+            color: "var(--ink-ghost)",
+            letterSpacing: "0.04em",
+            lineHeight: 1.6,
+            maxWidth: 480,
+            margin: "0 auto 40px",
+            paddingLeft: 16,
+            borderLeft: "2px solid rgba(44,36,22,0.15)",
+            textAlign: "left",
+          }}
+        >
+          Phân tích tình huống tuyển dụng dưới góc nhìn các cặp phạm trù cơ bản của phép biện chứng duy vật.
         </motion.p>
 
         {/* CTA */}
@@ -168,8 +189,8 @@ export function Scene1Intro({ isActive, onNext }: Scene1IntroProps) {
           variants={FI}
           initial="hidden"
           animate={isActive ? "show" : "hidden"}
-          transition={{ duration: 0.65, delay: 0.8 }}
-          style={{ display: "flex", gap: 12, justifyContent: "center", alignItems: "center" }}
+          transition={{ duration: 0.6, delay: 0.75 }}
+          style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}
         >
           <button
             className="btn-brass"
@@ -182,12 +203,20 @@ export function Scene1Intro({ isActive, onNext }: Scene1IntroProps) {
             </svg>
           </button>
           <span
-            className="t-scene-num"
-            style={{ fontSize: 8 }}
+            className="animate-breathe"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: 10,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "var(--ink-ghost)",
+            }}
           >
             ← → phím mũi tên để điều hướng
           </span>
         </motion.div>
+
+
 
         {/* Footer note */}
         <motion.p
@@ -195,12 +224,13 @@ export function Scene1Intro({ isActive, onNext }: Scene1IntroProps) {
           animate={isActive ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
           style={{
-            marginTop: 64,
+            marginTop: 40,
             fontFamily: "var(--font-display)",
             fontSize: 8,
             letterSpacing: "0.25em",
             textTransform: "uppercase",
             color: "var(--ink-ghost)",
+            textAlign: "center",
           }}
         >
           Phép Biện Chứng Duy Vật · Các Cặp Phạm Trù Cơ Bản

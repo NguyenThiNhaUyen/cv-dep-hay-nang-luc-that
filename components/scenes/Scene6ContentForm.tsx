@@ -154,8 +154,7 @@ export function Scene6ContentForm({ isActive }: Scene6ContentFormProps) {
             }}
           >
             <p className="t-quote" style={{ fontSize: "0.88rem" }}>
-              "Hình thức đẹp không tự nhiên tạo ra nội dung phong phú —
-              nhưng nội dung tốt luôn tìm được hình thức phù hợp."
+              "Một CV chuyên nghiệp có giá trị vì hình thức phù hợp giúp nội dung được tiếp cận hiệu quả. Tuy nhiên, nếu hình thức tách rời nội dung thực chất, nó sẽ trở nên rỗng tuếch và thiếu thuyết phục."
             </p>
           </motion.div>
 
@@ -250,7 +249,7 @@ export function Scene6ContentForm({ isActive }: Scene6ContentFormProps) {
               Kết Luận
             </span>
             <p className="t-body" style={{ fontSize: "0.85rem" }}>
-              Trong trường hợp này: <em>B có nội dung tốt hơn, dù hình thức đơn giản hơn.</em>
+              Trong trường hợp này, kết quả của B là minh chứng cho việc khi <em>nội dung vững vàng</em>, nó tự quyết định một hình thức thể hiện phù hợp và có sức thuyết phục thực tiễn.
             </p>
           </motion.div>
         </motion.div>
@@ -265,7 +264,7 @@ export function Scene6ContentForm({ isActive }: Scene6ContentFormProps) {
         style={{ position: "absolute", top: 85, right: 80, zIndex: 5 }}
         aria-hidden="true"
       >
-        bản chất &gt; hiện tượng!
+        thống nhất biện chứng
       </motion.span>
 
       {/* Connecting arrow */}
