@@ -216,52 +216,6 @@ export function Scene9FinalLesson({ isActive, onRestart }: Scene9FinalLessonProp
                 </div>
               </motion.div>
             ))}
-
-            {/* Footer seal */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isActive ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 1.2 }}
-              style={{
-                textAlign: "center",
-                paddingTop: 12,
-              }}
-            >
-              <div
-                style={{
-                  display: "inline-flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 6,
-                }}
-              >
-                <div style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: "50%",
-                  background: "radial-gradient(circle at 35% 35%, rgba(184,136,42,0.4), rgba(120,90,20,0.6))",
-                  border: "1px solid rgba(184,136,42,0.3)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "rgba(245,237,220,0.6)",
-                  fontSize: 18,
-                }}
-                  aria-hidden="true"
-                >
-                  ✦
-                </div>
-                <span style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 8,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  color: "rgba(184,136,42,0.35)",
-                }}>
-                  Triết Học Mác–Lênin
-                </span>
-              </div>
-            </motion.div>
           </div>
         </div>
 
